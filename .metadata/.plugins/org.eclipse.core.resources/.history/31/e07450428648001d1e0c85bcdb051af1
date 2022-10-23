@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Category List</title>
+	<th:block th:replace="common :: res"></th:block>
+</head>
+<body>
+	<div class="container">
+		<div class="container">
+			<div th:replace="common :: "></div>
+			<h3>Category List</h3>
+		</div>
+	</div>
+</body>
+</html>

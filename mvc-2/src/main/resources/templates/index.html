@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container mt-3">
+		<div class="row">
+			<h3 class="col-10">All Employees</h3>
+			<a th:href="@{/employees/add}" class="btn btn-success col">Add</a>
+		</div>
+		<hr />
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Salary</th>
+					<th>City</th>
+					<th>Birthday</th>
+					<th>Gender</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<th:block th:each="emp: ${employees}">
+					<tr>
+						<td th:text="${emp.name}">Aung</td>
+						<td th:text="${emp.salary}">100000</td>
+						<td th:text="${emp.city}">Yangon</td>
+						<td th:text="${emp.birthday}">1997-09-01</td>
+						<td th:text="${emp.gender}">Male</td>
+						<td th:text="${emp.status}">Single</td>
+						<td><a th:href="@{'/employees/'+${emp.id}}"
+							class="btn btn-primary">Edit</a> <a
+							th:href="@{'/employees/delete/'+${emp.id}}"
+							class="btn btn-danger">Delete</a></td>
+					</tr>
+				</th:block>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

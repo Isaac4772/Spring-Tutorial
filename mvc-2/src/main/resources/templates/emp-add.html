@@ -1,0 +1,104 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Add Employee</title>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container mt-3">
+		<div class="row">
+			<h3 class="col-10">Add Employee</h3>
+			<a th:href="@{/}" class="btn btn-primary col">Back</a>
+		</div>
+		<hr />
+
+		<form th:action="@{/employees/save}" class="col-6" method="post"
+			th:object="${employee_obj}">
+			<!--<div class="mb-3 alert alert-danger"
+				th:if="${#fields.hasErrors('global')}">
+				<p th:each="err: ${#fields.errors('global')}" th:text="${err}"></p>
+			</div 
+
+			<div class="mb-3 alert alert-danger"
+				th:if="${#fields.hasAnyErrors()}">
+				<ul>
+					<li th:each="err: ${#fields.allErrors()}" th:text=${err}></li>
+				</ul>
+			</div> -->
+			<input type="hidden" th:field="*{id}" />
+			<div class="mb-3">
+				<label for="name" class="form-label">Name</label>
+				<input id="name" type="text" class="form-control" th:field="*{name}" />
+				<span class="text-danger small" th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}"></span>
+			</div>
+
+			<div class="mb-3">
+				<label for="age" class="form-label">Age</label>
+				<input id="age" type="number" class="form-control" th:field="*{age}" />
+				<span class="text-danger small"
+					th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></span>
+			</div>
+
+			<div class="mb-3">
+				<label for="salary" class="form-label">Salary</label>
+				<input id="salary" type="number" class="form-control"
+					th:field="*{salary}" />
+			</div>
+
+			<div class="mb-3">
+				<label for="birthday" class="form-label">Birthday</label>
+				<input id="birthday" type="date" class="form-control"
+					th:field="*{birthday}" />
+			</div>
+
+			<div class="mb-3">
+				<label for="city" class="form-label">City</label>
+				<select name="city" id="city" class="form-select" th:field="*{city}">
+					<th:block th:each="city: ${cities}">
+						<option th:text=${city} th:value="${city}"></option>
+					</th:block>
+				</select>
+			</div>
+
+			<div class="mb-3 row">
+				<div class="col-2">
+					<label for="gender" class="form-label">Gender</label>
+				</div>
+
+				<div class="col">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="gender"
+							id="male" value="male" th:field="*{gender}">
+						<label class="form-check-label" for="male">male</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="gender"
+							id="female" value="female" th:field="*{gender}">
+						<label class="form-check-label" for="female">female</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label for="address" class="form-label">Address Detail</label>
+				<textarea class="form-control" name="address" id="address"
+					th:field="*{address}"></textarea>
+			</div>
+
+			<div class="mb-3">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="checkbox" id="is-active"
+						value="true" th:field="*{status}">
+					<label class="form-check-label" for="is-active">Is Active</label>
+				</div>
+			</div>
+
+			<button class="btn btn-success float-end">Save</button>
+		</form>
+	</div>
+	)
+</body>
+</html>

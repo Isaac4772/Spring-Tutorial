@@ -1,0 +1,36 @@
+package com.mmit.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.aungpaing.beans.Person;
+import com.aungpaing.beans.Teacher;
+import com.aungpaing.beans.University;
+
+@Configuration
+public class Config2 {
+
+	@Bean
+	public Teacher teacherBean() {
+		return new Teacher();
+	}
+
+	@Bean
+	public University universyBean() { // DI with Constructor
+		var uni = new University(teacherBean());
+		return uni;
+	}
+
+	@Bean
+	public University university() { // DI with setter
+		var uni = new University(null);
+		uni.setTeacher(teacherBean());
+		return uni;
+	}
+
+	@Bean
+	public Person personBean() {
+		var person = new Person();
+		return person;
+	}
+}
